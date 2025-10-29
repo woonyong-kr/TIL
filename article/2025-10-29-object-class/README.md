@@ -1,6 +1,6 @@
 # Object 클래스
 
-자바의 모든 클래스는 Object 클래스를 상속받는다. 명시적으로 상속을 선언하지 않아도 컴파일러가 자동으로 추가한다.
+자바의 모든 클래스는 Object 클래스를 상속받습니다. 명시적으로 상속을 선언하지 않아도 컴파일러가 자동으로 추가합니다.
 
 ```java
 public class Student { }
@@ -8,11 +8,13 @@ public class Student { }
 public class Student extends Object { }
 ```
 
+---
+
 ## Object의 역할
 
 ### 공통 기능 제공
 
-모든 객체가 필요한 기본 메서드들을 Object에서 제공한다.:
+모든 객체가 필요한 기본 메서드들을 Object에서 제공합니다:
 - toString() - 객체를 문자열로 표현
 - equals() - 객체의 동등성 비교
 - getClass() - 클래스 정보 조회
@@ -20,7 +22,7 @@ public class Student extends Object { }
 
 ### 다형성 지원
 
-모든 객체를 Object 타입으로 참조 가능하므로 다양한 타입을 통합적으로 처리할 수 있다.
+모든 객체를 Object 타입으로 참조 가능하므로 다양한 타입을 통합적으로 처리할 수 있습니다.
 
 ```java
 Object student = new Student("김철수", 20);
@@ -32,11 +34,13 @@ void display(Object obj) {
 }
 ```
 
+---
+
 ## 주요 메서드
 
 ### toString()
 
-객체를 문자열로 표현하는 메서드다.
+객체를 문자열로 표현하는 메서드입니다.
 
 **기본 구현:**
 ```java
@@ -46,7 +50,7 @@ public String toString() {
 // 출력: Student@a1b2c3d
 ```
 
-기본 toString()은 클래스 이름과 16진수 해시코드로 구성되며, 필요한 의도에 따라 오버라이딩해서 사용할 수 있다. 예를들어 String은 toString()으로 자신이 가지고 있는 문자열을 반환한다.
+기본 toString()은 클래스 이름과 16진수 해시코드로 구성되며, 필요한 의도에 따라 오버라이딩해서 사용할 수 있습니다. 예를 들어 String은 toString()으로 자신이 가지고 있는 문자열을 반환합니다.
 
 **오버라이딩:**
 
@@ -73,10 +77,11 @@ System.out.println(s.toString()); // 명시적 호출
 // 두 코드는 동일한 결과
 ```
 
+---
 
 ### equals()
 
-두 객체의 동등성을 비교하는 메서드다.
+두 객체의 동등성을 비교하는 메서드입니다.
 
 #### 동일성 vs 동등성
 
@@ -103,11 +108,11 @@ public boolean equals(Object obj) {
 }
 ```
 
-기본 구현은 동일성(메모리 주소)만 비교한다.
+기본 구현은 동일성(메모리 주소)만 비교합니다.
 
 #### equals() 오버라이딩
 
-동등성 비교가 필요할 때 equals()를 오버라이딩한다:
+동등성 비교가 필요할 때 equals()를 오버라이딩하여 이를 해결할 수 있습니다.:
 
 ```java
 @Override
@@ -129,7 +134,7 @@ System.out.println(s1.equals(s2));  // true (같은 학번)
 
 #### equals()를 오버라이딩하여 사용할 경우 hashCode()
 
-equals()를 오버라이딩할 때는 hashCode()도 함께 오버라이딩해야 한다. HashMap이나 HashSet 같은 컬렉션이 equals(), hashCode() 두 메서드를 사용해 비교하기 때문에 일관성이 깨지게 된다.
+equals()를 오버라이딩할 때는 hashCode()도 함께 오버라이딩해야 합니다. HashMap이나 HashSet 같은 컬렉션이 equals(), hashCode() 두 메서드를 사용해 비교하기 때문에 equals()만 오버라이딩하면 일관성이 깨지게 됩니다.
 
 ```java
 @Override
@@ -140,29 +145,31 @@ public int hashCode() {
 
 #### equals() 메서드의 규칙
 
-equals() 메서드를 구현할 때 지켜야 하는 규칙이 있다:
+equals() 메서드를 구현할 때 지켜야 하는 규칙이 있습니다.:
 
 **반사성(Reflexivity)**
-- 객체는 자기 자신과 동등해야 한다.
-- x.equals(x)는 항상 true다.
+- 객체는 자기 자신과 동등해야 합니다.
+- x.equals(x)는 항상 true
 
 **대칭성(Symmetry)**
-- 두 객체가 서로에 대해 동일하다고 판단하면, 이는 양방향으로 동일해야 한다.
-- x.equals(y)가 true이면, y.equals(x)도 true다.
+- 두 객체가 서로에 대해 동일하다고 판단하면, 이는 양방향으로 동일해야 합니다.
+- x.equals(y)가 true이면, y.equals(x)도 true
 
 **추이성(Transitivity)**
-- 만약 한 객체가 두 번째 객체와 동일하고, 두 번째 객체가 세 번째 객체와 동일하다면, 첫 번째 객체는 세 번째 객체와도 동일해야 한다.
-- x.equals(y)와 y.equals(z)가 true이면, x.equals(z)도 true다.
+- 만약 한 객체가 두 번째 객체와 동일하고, 두 번째 객체가 세 번째 객체와 동일하다면, 첫 번째 객체는 세 번째 객체와도 동일해야 합니다.
+- x.equals(y)와 y.equals(z)가 true이면, x.equals(z)도 true
 
 **일관성(Consistency)**
-- 두 객체의 상태가 변경되지 않는 한, equals() 메서드는 항상 동일한 값을 반환해야 한다.
+- 두 객체의 상태가 변경되지 않는 한, equals() 메서드는 항상 동일한 값을 반환해야 합니다.
 
 **null에 대한 비교**
-- 모든 객체는 null과 비교했을 때 false를 반환해야 한다.
+- 모든 객체는 null과 비교했을 때 false를 반환해야 합니다.
+
+---
 
 ## Object 타입의 한계
 
-Object 타입으로 모든 객체를 받을 수 있지만, Object에 없는 메서드를 호출하려면 다운캐스팅이 필요하다.
+Object 타입으로 모든 객체를 받을 수 있지만, Object에 없는 메서드를 호출하려면 다운캐스팅이 필요합니다.
 
 ```java
 Object obj = new Student("홍길동", 85);
@@ -180,6 +187,8 @@ if (obj instanceof Student student) {
     student.study();  // 가능
 }
 ```
+
+---
 
 ## Object 다형성 활용 예제
 
@@ -213,6 +222,8 @@ warehouse.showInventory();
 // Notebook{pages=200, price=5000}
 ```
 
+---
+
 ## 기타 메서드
 
 | 메서드 | 설명 |
@@ -221,6 +232,8 @@ warehouse.showInventory();
 | `hashCode()` | 해시코드 반환 (컬렉션에서 사용) |
 | `wait()`, `notify()` | 멀티쓰레드 동기화 제어 |
 | `clone()` | 객체 복사 (실무에서 거의 사용하지 않음) |
+
+---
 
 ## 배송 시스템 예제
 
@@ -277,11 +290,13 @@ system.recordShipment(pkg1);  // 배송 기록: Package{...}
 system.recordShipment(pkg2);  // 이미 배송 완료
 ```
 
+---
+
 ## 정리
 
-- 모든 클래스는 Object를 상속받는다.
-- toString()을 오버라이딩하면 객체를 원하는 형태의 문자열로 표현할 수 있다.
-- equals()는 동등성 비교이고, == 는 동일성 비교다.
-- equals()를 오버라이딩할 때는 hashCode()도 함께 오버라이딩해야 한다.
-- Object 다형성을 활용하면 다양한 타입을 통합적으로 처리할 수 있다.
-- Object 타입에 없는 메서드 호출 시 다운캐스팅이 필요하다.
+- 모든 클래스는 Object를 상속받습니다.
+- toString()을 오버라이딩하면 객체를 원하는 형태의 문자열로 표현할 수 있습니다.
+- equals()는 동등성 비교이고, == 는 동일성 비교입니다.
+- equals()를 오버라이딩할 때는 hashCode()도 함께 오버라이딩해야 합니다.
+- Object 다형성을 활용하면 다양한 타입을 통합적으로 처리할 수 있습니다.
+- Object 타입에 없는 메서드 호출 시 다운캐스팅이 필요합니다.
