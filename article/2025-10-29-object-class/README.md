@@ -10,7 +10,7 @@ public class Student extends Object { }
 
 ## Object의 역할
 
-### 1. 공통 기능 제공
+### 공통 기능 제공
 
 모든 객체가 필요한 기본 메서드들을 Object에서 제공한다.:
 - toString() - 객체를 문자열로 표현
@@ -18,7 +18,7 @@ public class Student extends Object { }
 - getClass() - 클래스 정보 조회
 - hashCode() - 해시값 반환
 
-### 2. 다형성 지원
+### 다형성 지원
 
 모든 객체를 Object 타입으로 참조 가능하므로 다양한 타입을 통합적으로 처리할 수 있다.
 
