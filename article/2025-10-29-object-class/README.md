@@ -46,9 +46,7 @@ public String toString() {
 // 출력: Student@a1b2c3d
 ```
 
-기본 toString()은 클래스 이름과 16진수 해시코드로 구성된다. 
-필요한 의도에 따라 오버라이딩해서 사용할 수 있다. 
-String은 toString()으로 자신이 가지고 있는 문자열을 반환한다.
+기본 toString()은 클래스 이름과 16진수 해시코드로 구성되며, 필요한 의도에 따라 오버라이딩해서 사용할 수 있다. 예를들어 String은 toString()으로 자신이 가지고 있는 문자열을 반환한다.
 
 **오버라이딩:**
 
@@ -75,7 +73,6 @@ System.out.println(s.toString()); // 명시적 호출
 // 두 코드는 동일한 결과
 ```
 
----
 
 ### equals()
 
@@ -130,9 +127,9 @@ s2.setStudentId("A001");
 System.out.println(s1.equals(s2));  // true (같은 학번)
 ```
 
-#### equals()와 hashCode()
+#### equals()를 오버라이딩하여 사용할 경우 hashCode()
 
-equals()로 같다고 판단된 두 객체는 같은 hashCode()값을 반환해야 한다. 특히 HashMap이나 HashSet 같은 컬렉션을 사용할 때 필수다.
+equals()를 오버라이딩할 때는 hashCode()도 함께 오버라이딩해야 한다. HashMap이나 HashSet 같은 컬렉션이 equals(), hashCode() 두 메서드를 사용해 비교하기 때문에 일관성이 깨지게 된다.
 
 ```java
 @Override
@@ -140,6 +137,28 @@ public int hashCode() {
     return Objects.hash(studentId);
 }
 ```
+
+#### equals() 메서드의 규칙
+
+equals() 메서드를 구현할 때 지켜야 하는 규칙이 있다:
+
+**반사성(Reflexivity)**
+- 객체는 자기 자신과 동등해야 한다.
+- x.equals(x)는 항상 true다.
+
+**대칭성(Symmetry)**
+- 두 객체가 서로에 대해 동일하다고 판단하면, 이는 양방향으로 동일해야 한다.
+- x.equals(y)가 true이면, y.equals(x)도 true다.
+
+**추이성(Transitivity)**
+- 만약 한 객체가 두 번째 객체와 동일하고, 두 번째 객체가 세 번째 객체와 동일하다면, 첫 번째 객체는 세 번째 객체와도 동일해야 한다.
+- x.equals(y)와 y.equals(z)가 true이면, x.equals(z)도 true다.
+
+**일관성(Consistency)**
+- 두 객체의 상태가 변경되지 않는 한, equals() 메서드는 항상 동일한 값을 반환해야 한다.
+
+**null에 대한 비교**
+- 모든 객체는 null과 비교했을 때 false를 반환해야 한다.
 
 ## Object 타입의 한계
 
